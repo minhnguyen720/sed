@@ -8,7 +8,7 @@ public class StateManager {
     private final int DEFAULT_PRICE = 1;
 
     private int wallet;
-    private final int gumAmtInMachine = 10;
+    private int gumAmtInMachine = 10;
     private int quarterInMachine = 0;
 
     public StateManager(int wallet) {
