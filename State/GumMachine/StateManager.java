@@ -16,13 +16,8 @@ public class StateManager {
         currentState = new StandBy();
     }
 
-    public void insert() {
-        quarterInMachine += 1;
-        this.wallet -= DEFAULT_PRICE;
-        System.out.println("Top up successful");
-    }
-
-    public void execute() {        
+    // default methods
+    public void execute() {
         currentState.execute(this);
     }
 
@@ -30,12 +25,38 @@ public class StateManager {
         currentState = newState;
     }
 
-    public int getWallet() {
-        return this.wallet;
+    // custom methods
+    public boolean hasGumball() {
+        if (gumAmtInMachine > 0)
+            return true;
+        else
+            return false;
     }
 
+    public boolean hasQuarter() {
+        if (quarterInMachine > 0)
+            return true;
+        else
+            return false;
+    }
+
+    public void insert() {
+        quarterInMachine += 1;
+        this.wallet -= DEFAULT_PRICE;
+        System.out.println("Top up successful");
+    }
+
+    // getters and setters
     public void setWallet(int wallet) {
         this.wallet = wallet;
+    }
+
+    public void setGumAmt(int amt) {
+        this.gumAmtInMachine = amt;
+    }
+
+    public int getWallet() {
+        return this.wallet;
     }
 
     public int getGumAmt() {

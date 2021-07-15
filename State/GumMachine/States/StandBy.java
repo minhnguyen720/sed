@@ -10,12 +10,13 @@ public class StandBy implements State {
 
     @Override
     public void sendMessage(String message) {
+        System.out.println(message);
     }
 
     @Override
     public void execute(StateManager manager) {
         System.out.println("---------------- COMMAND LIST ----------------");
-        System.out.println("insert - insert coin\nbuy - buy gum\ncheck - check balance\nexit - exit program");
+        System.out.println("insert - insert coin\nbuy - buy gum\ncheck - check balance\ncheckAmt - check amount of gumball\nexit - exit program");
 
         String cmd = "";
 
@@ -27,18 +28,26 @@ public class StandBy implements State {
                 case "insert":
                     manager.insert();
                     break;
-                case "buy":
-                    manager.setState(new NoQuarter(manager.getCounter()));
+                case "buy": // this step contain 2 steps
+                    // check quarter in the machine
+                    manager.setState(new Quarter());
                     manager.execute();
+                    // check gumball in the machine then buy if true
+                    manager.setState(new Gumball());
+                    manager.execute();
+                    sendMessage("Buy gumball successful");
                     break;
                 case "check":
                     System.out.println("Your balance: " + manager.getWallet());
+                    break;
+                case "checkAmt":
+                    System.out.println("Quantity of gumball in the machine: " + manager.getGumAmt());
                     break;
                 case "exit":
                     System.exit(1);
                     break;
                 default:
-                    System.out.println("Command is unrecognizable, please try again");
+                    sendMessage("Command is unrecognizable, please try again");
             }
         }
         
