@@ -2,15 +2,11 @@ package question3;
 
 public abstract class User {
     String code;
-    private Center center;
     public boolean isInterest;
     
-    public User(Center center, boolean isInterest) {
-        this.center = center;
+    public User(boolean isInterest) {
         this.isInterest = isInterest;
     }
-    
-    public abstract void setInterest(boolean isInterest);
 
     public abstract String getCode();
 
@@ -19,4 +15,10 @@ public abstract class User {
     public abstract void update(SportCenter center);
 
     public abstract boolean getInterest();
+
+    // if user is interest to gettin notification from center then it will add itself to the list of center
+    public void checkCenterNotifyUser(SportCenter center) {
+        if(this.isInterest)
+            center.addUser(this); // this step confirms that user will be added to the list
+    }
 }

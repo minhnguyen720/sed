@@ -7,7 +7,7 @@ public class SportCenter implements Center {
     protected String code;
     protected int state;
 
-    private List<User> users = new ArrayList<>();
+    private List<User> notifyUsers = new ArrayList<>(); //stores only user that interest notification
 
     public SportCenter(String code) {
         this.code = code;
@@ -15,15 +15,14 @@ public class SportCenter implements Center {
 
     @Override
     public void notifyAllUsers() {
-        for (User user : users)
-            if(user.getInterest())
+        for (User user : notifyUsers)
                 user.update(this);
     }
 
     @Override
     public void addUser(User user) {
-        if (!users.contains(user))
-            users.add(user);
+        if (!notifyUsers.contains(user))
+            notifyUsers.add(user);
         else
             System.out.println("Nothing to do");
 
@@ -31,8 +30,8 @@ public class SportCenter implements Center {
 
     @Override
     public void removeUser(User user) {
-        if (users.contains(user))
-            users.remove(user);
+        if (notifyUsers.contains(user))
+            notifyUsers.remove(user);
         else
             System.out.println("Nothing to do");
 
