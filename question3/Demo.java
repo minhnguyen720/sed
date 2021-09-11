@@ -1,31 +1,22 @@
 package question3;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 public class Demo {
     // update user when center changes state
-
-    public static HashMap<Center, ArrayList<User>>
-        manager = new HashMap<>();
-
     public static void main(String[] args) {
 
         // Expected: mem2 gonna stay in 2 centers
+        // Expected: only mem1 response to center
         SportCenter sportCenter = new SportCenter("C01");
-        SportCenter sportCenter2 = new SportCenter("C02");
-        User mem1 = new Member(sportCenter, "M01");
-        User mem2 = new Member(sportCenter, "M02");
-        sportCenter2.addUser(mem2);
-        new Trainer(sportCenter, "T01");
+        User mem1 = new Member(sportCenter, true ,"M01");
+        User mem2 = new Member(sportCenter, false,"M02");
+        new Trainer(sportCenter, false ,"T01");
         sportCenter.setState(1);
-        sportCenter2.setState(3);
 
+        // Expected: mem2 response to center
         System.out.println("-----------------------");
         sportCenter.removeUser(mem1);
-        sportCenter2.addUser(mem1);
+        mem2.setInterest(true);
         sportCenter.setState(2);
-        sportCenter2.setState(0);
 
 
     }

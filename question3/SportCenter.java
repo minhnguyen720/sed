@@ -16,7 +16,8 @@ public class SportCenter implements Center {
     @Override
     public void notifyAllUsers() {
         for (User user : users)
-            user.update(this);
+            if(user.getInterest())
+                user.update(this);
     }
 
     @Override

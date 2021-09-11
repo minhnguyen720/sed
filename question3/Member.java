@@ -1,8 +1,8 @@
 package question3;
 
 public class Member extends User {
-    public Member(Center center,String code) {
-        super(center);
+    public Member(Center center, boolean isInterest, String code) {
+        super(center, isInterest);
         this.code = code;
         center.addUser(this);
     }
@@ -21,6 +21,17 @@ public class Member extends User {
     @Override
     public void setCode(String code) {
         this.code = code;
+    }
+
+    @Override
+    public void setInterest(boolean isInterest) {
+        this.isInterest = isInterest;
+        
+    }
+
+    @Override
+    public boolean getInterest() {
+        return this.isInterest;
     }
 
 }
